@@ -4,7 +4,10 @@
   "description": "App with React Express MongoDB NodeJS",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "client-instal": "cd client && npm install",
+    "start": "node server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm start\" \"npm run client\"" 
   },
   "author": "Me",
   "license": "MIT",
