@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import "../scss/form.scss";
+import Modal from "./Modal"
+import Overlay from "./Overlay"
 //import axios from 'axios'
 
 export default class CreateTodo extends Component {
@@ -11,7 +12,9 @@ export default class CreateTodo extends Component {
         url: "",
         date: "",
         duration: "",
-        descriptionShown: false
+        descriptionShown: true,
+        showOverlay: false,
+        showModal: false,
     }
 
     textOnChange = event => {
@@ -29,10 +32,22 @@ export default class CreateTodo extends Component {
 
     }
 
-    addDescription = () => {
+
+    openModal = () => {
         this.setState({
-            descriptionShown: true
-        })
+            showModal: true,
+            showOverlay: true
+        }, () => console.log(this.state)
+        )
+
+    }
+
+    closeModal = () => {
+        this.setState({
+            showModal: false,
+            showOverlay: false
+        }, () => console.log(this.state)
+        )
     }
     // onSubmit = event => {
     //     event.preventDefault();
@@ -59,15 +74,26 @@ export default class CreateTodo extends Component {
     // }
 
     render() {
-
+        const visibile = `form__group--${this.state.descriptionShown ? 'shown' : 'hidden'}`
         return (
-            <div>
+            <React.Fragment>
+                <Overlay
+                    show={this.state.showOverlay}
+                />
+                <Modal
+                    title="Tags"
+                    show={this.state.showModal}
+                    close={this.closeModal}
+                >
+                    <p>Modal Content</p>
+                </Modal>
                 <h3>New Resource</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="input_text">
-                        <label>Title*</label>
+                <form onSubmit={this.onSubmit} className="form">
+                    <div className="form__group">
+                        <label className="form__group_label">Title*</label>
                         <input
                             type="text"
+                            className="form__group_input"
                             value={this.state.title}
                             onChange={this.textOnChange}
                             name="title"
@@ -75,45 +101,50 @@ export default class CreateTodo extends Component {
                             required
                         />
                     </div>
-                    <div className="input_text">
-                        <label>Tags*</label>
+                    <div className="form__group">
+                        <label className="form__group_label">Tags*</label>
                         <input
                             type="text"
+                            className="form__group_input"
                             value={this.state.tags.join(",")}
                             onChange={this.tagsOnChange}
                             name="tags"
                             required
                         />
-                        <span className="add_tags">
+                        <span
+                            className="form__group_addtags"
+                            onClick={this.openModal}
+                        >
                             <i className="fa fa-plus-circle"></i>
                         </span>
                     </div>
-                    <div className="input_text">
-                        <label>Url*</label>
+                    <div className="form__group">
+                        <label className="form__group_label">Url*</label>
                         <input
                             type="text"
+                            className="form__group_input"
                             value={this.state.url}
                             onChange={this.textOnChange}
                             name="url"
                             required
                         />
                     </div>
-                    <div className="input_text__pair">
-                        <div className="input_text">
-                            <label>Duration</label>
+                    <div className="form__grouppair">
+                        <div className="form__group form__grouppair_child">
+                            <label className="form__group_label">Duration</label>
                             <input
                                 type="text"
-                                className="input_text--short"
+                                className="form__group_input input--short"
                                 value={this.state.duration}
                                 onChange={this.textOnChange}
                                 name="duration"
                             />
                         </div>
-                        <div className="input_text">
-                            <label>Date</label>
+                        <div className="form__group form__grouppair_child">
+                            <label className="form__group_label">Date</label>
                             <input
                                 type="text"
-                                className="input_text--short"
+                                className="form__group_input input--short"
                                 value={this.state.date}
                                 onChange={this.textOnChange}
                                 name="date"
@@ -121,8 +152,8 @@ export default class CreateTodo extends Component {
                         </div>
 
                     </div>
-                    <div className={`input_text ${this.state.descriptionShown ? 'shown' : 'hidden'}`}>
-                        <label>Description</label>
+                    <div className={`form__group ${visibile}`}>
+                        <label className="form__group_label">Description</label>
                         <textarea
                             value={this.state.description}
                             onChange={this.textOnChange}
@@ -137,9 +168,9 @@ export default class CreateTodo extends Component {
 
                     </div>
 
-                    <div className="buttons_container">
+                    <div className="form__actions">
                         <button
-                            className="add_description"
+                            className="button"
                             type="button"
                             onClick={() => this.setState({ descriptionShown: true })}
                             disabled={this.state.descriptionShown}
@@ -147,9 +178,8 @@ export default class CreateTodo extends Component {
                             <i className="fa fa-plus-circle"></i>
                             Add Description
                         </button>
-
                         <button
-                            className="create_resource"
+                            className="button"
                             type="submit"
                         >
                             <i className="fa fa-check"></i>
@@ -158,7 +188,7 @@ export default class CreateTodo extends Component {
                     </div>
 
                 </form>
-            </div>
+            </React.Fragment>
         )
     }
 }

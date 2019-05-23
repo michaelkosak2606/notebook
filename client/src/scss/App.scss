@@ -1,8 +1,15 @@
 @import "./variables";
+@import "./elements/form";
+@import "./navbar";
+@import "./modal";
+@import "./overlay";
+@import "./elements/button";
+
 
 body{
     margin: 0;
-    background-color: $body
+    background-color: $body;
+    position: relative;
   }
 
 .container {
@@ -12,4 +19,10 @@ body{
   padding: 20px;
   border-radius: 7px;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+@media(max-width: 768px){
+  .container{
+      width: 100%;
+  }
 }

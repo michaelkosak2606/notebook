@@ -1,13 +1,10 @@
-@import "./variables";
-
-
 
 .navbar{
     height: 170px;
     width: 100%;
-    //background-color: $main;
-    background-image: linear-gradient(-120deg, rgba(245, 33, 33, 0) 85%, rgba(255, 255, 255, 0.08) 15%), linear-gradient(-108deg, rgba(27, 0, 255, 0) 84%, rgba(255, 255, 255, 0.08) 15%), linear-gradient(-101deg, rgba(255, 33, 33, 0) 80%, rgba(255, 255, 255, 0.08) 15%), radial-gradient(circle, rgb(2, 32, 60) 0%, rgb(2, 32, 60) 100%);
     margin-bottom: 20px;
+    background-color: $main;
+    background-image: linear-gradient(-120deg, rgba(245, 33, 33, 0) 85%, rgba(255, 255, 255, 0.08) 15%), linear-gradient(-108deg, rgba(27, 0, 255, 0) 84%, rgba(255, 255, 255, 0.08) 15%), linear-gradient(-101deg, rgba(255, 33, 33, 0) 80%, rgba(255, 255, 255, 0.08) 15%), radial-gradient(circle, rgb(2, 32, 60) 0%, rgb(2, 32, 60) 100%);
     padding-top: 10px;
     color: $white;
     .navbar_content{
@@ -78,4 +75,10 @@
     }
         
 
+}
+@media(max-width: 768px){
+    .navbar{
+        margin-bottom: 0;
+        height: 170px;
+    }
 }
