@@ -16,8 +16,8 @@ class App extends Component {
 
     return (
       <Router>
+        <Header />
         <div className="container">
-          <Header />
           <Route path="/" exact component={Dashboard} />
           <Route path="/edit/:id" exact component={Edit} />
           <Route path="/create" exact component={Create} />
