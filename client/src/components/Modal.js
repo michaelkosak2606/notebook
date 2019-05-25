@@ -19,7 +19,7 @@ const modal = props => (
         </section>
         <section className="modal__actions">
             <button className="button button--cancel" onClick={props.close}>Cancel</button>
-            <button className="button ">Add Tags</button>
+            <button className="button" onClick={props.addTags}>{props.confirm}</button>
         </section>
     </div>
 )

@@ -43,12 +43,18 @@
     &__content{
         padding: 1rem;
         overflow: auto;
-        height: 400px;
         &_container{
             width: 100%;
             height: 100%;
             border: 1px solid $main;
-            border-radius: 10px;
+            &_item{
+                margin: 1rem;
+                color: $main;
+                cursor: pointer;
+                &--chosen{
+                    color: #7fdc7f;
+                }
+            }
         }
     }
     &__actions{
